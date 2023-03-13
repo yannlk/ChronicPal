@@ -1,5 +1,6 @@
 import tkinter as tk
 from Collector import *
+from tkinter import messagebox
 
 
 def root_init():
@@ -45,8 +46,13 @@ def process_collector(collector_index, root, collectors, input_date):
         ui_entry = tk.Entry(root, textvariable=entry_data)
         ui_entry.pack()
 
-        ui_entry.bind("<Return>", lambda event: handle_submit(collector, entry_data.get(), root, collectors,
-                                                              collector_index, input_date))
+        ui_entry.bind("<Return>", lambda event: (
+            handle_submit(collector, int(entry_data.get()), root, collectors, collector_index, input_date)
+            if entry_data.get().isdigit() else
+            (messagebox.showerror("Invalid Input", "Please enter a valid integer value"),
+             process_collector(collector_index, root, collectors, input_date))
+        ))
+
         ui_entry.focus_set()
 
     else:         # Skip to the next collector if the current one is not due
