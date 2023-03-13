@@ -46,12 +46,17 @@ def process_collector(collector_index, root, collectors, input_date):
         ui_entry = tk.Entry(root, textvariable=entry_data)
         ui_entry.pack()
 
-        ui_entry.bind("<Return>", lambda event: (
-            handle_submit(collector, int(entry_data.get()), root, collectors, collector_index, input_date)
-            if entry_data.get().isdigit() else
-            (messagebox.showerror("Invalid Input", "Please enter a valid integer value"),
-             process_collector(collector_index, root, collectors, input_date))
-        ))
+        def handle_entry(event):
+            input_value = entry_data.get()
+            if input_value.isdigit() and 0 <= int(input_value) <= 5:
+                handle_submit(collector, input_value, root, collectors, collector_index, input_date)
+            else:
+                error_label = tk.Label(root, text="Please enter an integer between 0 and 5.")
+                error_label.pack()
+                ui_entry.delete(0, tk.END)
+                ui_entry.focus_set()
+
+        ui_entry.bind("<Return>", handle_entry)
 
         ui_entry.focus_set()
 
