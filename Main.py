@@ -1,7 +1,9 @@
 from tk_commands import *
 from datetime import date
+from random import shuffle
 
 collectors = init_collectors()  # Initiate collector objects which represent each Row of the Dataset
+shuffle(collectors)  # Give random order to those collectors
 
 date = date.today()
 
