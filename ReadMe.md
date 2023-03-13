@@ -3,7 +3,7 @@ When stable version, release app.
 
 ### Short Term
 - [x] Add to Git
-- [ ] Error when Bad Value
+- [x] Error when Bad Value
 - [ ] Set Dark Mode on Tkinter
 ### Medium Term
 - [ ] Notifications
