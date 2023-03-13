@@ -48,10 +48,10 @@ def process_collector(collector_index, root, collectors, input_date):
 
         def handle_entry(event):
             input_value = entry_data.get()
-            if input_value.isdigit() and 0 <= int(input_value) <= 5:
+            if isinstance(input_value, float) and 0 <= float(input_value) <= 5:
                 handle_submit(collector, input_value, root, collectors, collector_index, input_date)
             else:
-                error_label = tk.Label(root, text="Please enter an integer between 0 and 5.")
+                error_label = tk.Label(root, text="Please enter a number between 0 and 5.")
                 error_label.pack()
                 ui_entry.delete(0, tk.END)
                 ui_entry.focus_set()
