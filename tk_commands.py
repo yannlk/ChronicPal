@@ -44,6 +44,7 @@ def process_collector(collector_index, root, collectors, input_date):
         entry_data = tk.StringVar()
         ui_entry = tk.Entry(root, textvariable=entry_data)
         ui_entry.pack()
+
         ui_entry.bind("<Return>", lambda event: handle_submit(collector, entry_data.get(), root, collectors,
                                                               collector_index, input_date))
         ui_entry.focus_set()
