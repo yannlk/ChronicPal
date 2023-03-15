@@ -59,7 +59,6 @@ def process_collector(collector_index, root, collectors, input_date):
                 ui_entry.delete(0, tk.END)
                 ui_entry.focus_set()
 
-
         ui_entry.bind("<Return>", handle_entry)
 
         ui_entry.focus_set()
