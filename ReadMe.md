@@ -5,7 +5,7 @@ When stable version, release app.
 - [x] Add to Git
 - [x] Error when Bad Value
 - [x] Set Dark Mode on Tkinter
-- [ ] Go Back Button
+- [x] Go Back Button
 ### Medium Term
 - [x] Random Thing
 ### Long Term

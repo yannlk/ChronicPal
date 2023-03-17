@@ -61,7 +61,13 @@ def process_collector(collector_index, root, collectors, input_date):
 
         ui_entry.bind("<Return>", handle_entry)
 
-        ui_entry.focus_set()
+        ui_entry.focus_set()  # Puts focus on the entry
+
+        if collector_index > 0:
+            redo_button = tk.Button(root, text="Redo Previous Entry", command=lambda: redo_entry(collector_index - 1,
+                                                                                                 root, collectors,
+                                                                                                 input_date))
+            redo_button.pack()
 
     else:         # Skip to the next collector if the current one is not due
         print(f'    Current collector is not due')
@@ -75,3 +81,9 @@ def handle_submit(collector, answer, root, collectors, collector_index, input_da
     change_due_date(collector, input_date)
     collector_index += 1
     process_collector(collector_index, root, collectors, input_date)
+
+
+def redo_entry(prev_collector_index, root, collectors, input_date):
+    collectors[prev_collector_index].due_date = date.today() + timedelta(days=-int(collectors[prev_collector_index].repeat))
+    process_collector(prev_collector_index, root, collectors, input_date)
+
