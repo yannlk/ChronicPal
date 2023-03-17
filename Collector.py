@@ -29,6 +29,17 @@ class Collector:
 
         df_data.to_csv('Data.csv')  # Write the changes
 
+    def col_handle_submit(self, answer, input_date):
+        """Handles the submit action of new data by making necessary changes"""
+        self.submit_data(answer, input_date)
+        self.change_due_date(input_date)
+
+    def change_due_date(self, current_date):
+        """Changes the due date of the collector to the next due date, once the data has been submitted"""
+        df_collectors = pd.read_csv('Collectors.csv', index_col='Name')
+        df_collectors.at[self.question, 'Due Date'] = str(current_date + timedelta(days=int(self.repeat)))
+        df_collectors.to_csv('Collectors.csv')
+
 
 def init_collectors():
     """Takes every row in collector.csv and creates a collector item from it, outputs a list of all these items."""
@@ -43,9 +54,3 @@ def init_collectors():
     print('From function "init_collectors": The length of collectors is:', len(collectors))
     return collectors
 
-
-def change_due_date(collector, date):
-    """Changes the due date of the collector to the next due date, once the data has been submitted"""
-    df_collectors = pd.read_csv('Collectors.csv', index_col='Name')
-    df_collectors.at[collector.question, 'Due Date'] = str(date + timedelta(days=int(collector.repeat)))
-    df_collectors.to_csv('Collectors.csv')
