@@ -13,6 +13,6 @@ When stable version, release app.
 
 ## Ideas
 - Y/N Base categories before specific questions
-- Set Date
+- Set Date, last unfilled
 - Obsidian Interface
 - Not ask as much when no symptoms
