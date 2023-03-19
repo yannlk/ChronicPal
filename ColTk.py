@@ -1,6 +1,7 @@
 import tkinter as tk
 from Collector import *
 from tk_commands import *
+import datetime
 
 
 def process_collector(collector_index, root, collectors, input_date):
@@ -73,3 +74,26 @@ def redo_entry(prev_collector_index, root, collectors, input_date):
     prev_collector = collectors[prev_collector_index]
     prev_collector.due_date = date.today() + timedelta(days=-int(prev_collector.repeat))
     process_collector(prev_collector_index, root, collectors, input_date)
+
+
+def initiator(collector_index, root, collectors):
+    """Initiates the date collection and therefore pushes to the process collector"""
+
+    def date_entry(event):
+        """Entry function for the Data"""
+        if entry_date.get() == '':
+            submit_date = date.today()
+        else:
+            submit_date = date.today() + timedelta(float(entry_date.get()))
+        print('From function "Initiator", we are collecting for:', submit_date)
+        process_collector(collector_index, root, collectors, submit_date)
+
+    question_label = tk.Label(root, text='Date in days before/after today')
+    question_label.pack()
+
+    entry_date = tk.StringVar()
+    ui_entry = tk.Entry(root, textvariable=entry_date)
+    ui_entry.pack()
+    ui_entry.bind("<Return>", date_entry)
+
+    ui_entry.focus_set()  # Puts focus on the entry

@@ -37,7 +37,7 @@ class Collector:
     def change_due_date(self, current_date):
         """Changes the due date of the collector to the next due date, once the data has been submitted"""
         df_collectors = pd.read_csv('Collectors.csv', index_col='Name')
-        df_collectors.at[self.question, 'Due Date'] = str(current_date + timedelta(days=int(self.repeat)))
+        df_collectors.at[self.question, 'Due Date'] = current_date + timedelta(days=int(self.repeat))
         df_collectors.to_csv('Collectors.csv')
 
 
