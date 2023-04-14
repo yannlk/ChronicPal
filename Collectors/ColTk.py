@@ -1,7 +1,7 @@
 import tkinter as tk
-from Collector import *
-from tk_commands import *
-import datetime
+from Tk.tk_commands import clear_window
+from datetime import date, timedelta
+from Collectors.Collector import Collector
 
 
 def process_collector(collector_index, root, collectors, input_date):
@@ -14,40 +14,16 @@ def process_collector(collector_index, root, collectors, input_date):
 
     if collector_index >= len(collectors):  # If cycle is finished
         print(f'    All collectors cycled through')
-        question_label = tk.Label(root, text="Nothing else is due today :)")
-        question_label.pack()
+        tk.Label(root, text="Nothing else is due today :)").pack()
         return
 
     collector = collectors[collector_index]
     print(f'    Collector name {collector.question}')
 
-    if collector.due():
+    if collector.due(input_date):
         print(f'    Current collector is due')
 
-        # Create the UI elements for the current collector
-        question_label = tk.Label(root, text=collector.question)
-        question_label.pack()
-
-        entry_data = tk.StringVar()
-        ui_entry = tk.Entry(root, textvariable=entry_data)
-        ui_entry.pack()
-
-        def handle_entry(event):
-            input_value = entry_data.get()
-            try:
-                if 0 <= int(input_value) <= 5:
-                    handle_submit(collector, input_value, root, collectors, collector_index, input_date)
-                else:
-                    raise ValueError
-            except ValueError:
-                error_label = tk.Label(root, text="Please enter an integer between 0 and 5.")
-                error_label.pack()
-                ui_entry.delete(0, tk.END)
-                ui_entry.focus_set()
-
-        ui_entry.bind("<Return>", handle_entry)
-
-        ui_entry.focus_set()  # Puts focus on the entry
+        collector.entry(root, collectors, collector_index, input_date)
 
         if collector_index > 0:
             redo_button = tk.Button(root, text="Redo Previous Entry", command=lambda: redo_entry(collector_index - 1,
@@ -62,9 +38,10 @@ def process_collector(collector_index, root, collectors, input_date):
         process_collector(collector_index, root, collectors, input_date)
 
 
-def handle_submit(collector, answer, root, collectors, collector_index, input_date):
+def handle_submit(collector, answer, root, collectors, collector_index, repeat, zeros, input_date):
     """Handle Submit from the process collector side"""
-    collector.col_handle_submit(answer, input_date)
+    Collector(collector.question, collector.repeat, collector.category, collector.zeros, collector.last_done)\
+        .col_handle_submit(answer, input_date, repeat, zeros)
     collector_index += 1
     process_collector(collector_index, root, collectors, input_date)
 

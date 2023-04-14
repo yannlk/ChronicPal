@@ -1,0 +1,15 @@
+Name,Repeat,Type,Days,Unnamed: 4,LastDone
+Acid Reflux,0.0,Number,0.0,,2023-04-14
+Fatigue,1e-16,Number,-2.0,,
+General Headache,0.0,Number,-0.8666666666666667,,
+Diarrhea,0.0,Number,-4.0,,
+Irregular Bowel Movement,0.0,Number,-0.0666666666666667,,
+Excessive Flatulence,0.4000000000000001,Number,-1.3333333333333337,,
+Heat Flash,0.9,Number,0.0,,
+Weird Tension Headache,-0.4,Number,0.0,,2023-04-14
+Exercise Intolerance,0.0,Number,1.0,,
+Stress,0.0,Number,0.0,,
+Cramps,0.0,Number,0.0,,2023-04-14
+Sleep,0.9,Number,3.0,,
+Nausea,-0.6,Number,0.0,,
+Medicine,0.0,Checklist,0.0,,2023-04-14
