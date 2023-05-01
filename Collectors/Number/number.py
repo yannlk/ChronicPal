@@ -27,6 +27,8 @@ class NumberCol:
     def new_rpt_zrs(self, input_value):
         """Takes the old repeat and zeros and the input value and gives the new repeat and zeros"""
         inpt = int(input_value)
+        if inpt == -1:
+            return [self.repeat, self.zeros]
         if inpt == 0:
             return [self.repeat + 0.4, self.zeros + 1]
         elif inpt == 1:
@@ -78,7 +80,7 @@ class NumberCol:
 
 def self_pos(number):
     """Based on a number return the smallest positive integer"""
-    return min(0, number)
+    return max(0, number)
 
 
 def take_zeros(number):

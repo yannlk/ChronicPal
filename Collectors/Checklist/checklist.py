@@ -46,6 +46,9 @@ class ChecklistCol:
                 if obj.status.get() == 1:
                     line += obj.name + '_'
 
+            if line == '':
+                line = 'None'
+
             from Collectors.ColTk import handle_submit
 
             handle_submit(self, line, root, collectors, collector_index, 0, 0, input_date)

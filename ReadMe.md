@@ -59,8 +59,8 @@ Check all the elements which are relevant and press submit.
 # Future Development
 
 ### Short Term
-- [ ] Enter ' ' -> 0 for number
-- [ ] Difference between didn't fill checklist and none checked
+- [x] Enter ' ' -> 0 for number
+- [x] Difference between didn't fill checklist and none checked
 ### Medium Term
 - [ ] Search function to input data
 ### Long Term
@@ -75,6 +75,6 @@ Check all the elements which are relevant and press submit.
 - Application
 
 # Bugs and Contact
-Please report bugs to the issues page of this github, and for anything else feel free to contact me.
+Please report bugs to the issues page of this GitHub, and for anything else feel free to contact me.
 
 
